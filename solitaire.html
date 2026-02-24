@@ -53,6 +53,195 @@ header {
 
 .header-btns { display: flex; gap: 10px; }
 
+/* Timer */
+.timer-display {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  min-width: 60px;
+  text-align: center;
+  opacity: 0.9;
+}
+.timer-display.running { color: var(--gold2); }
+
+/* ── LEADERBOARD PANEL ── */
+#lb-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 6000;
+  background: rgba(0,0,0,0.65);
+  align-items: center;
+  justify-content: center;
+}
+#lb-overlay.show { display: flex; }
+
+.lb-panel {
+  background: linear-gradient(160deg, #111820, #0c1410);
+  border: 1px solid rgba(212,168,83,0.3);
+  border-radius: 14px;
+  width: 420px;
+  max-width: 94vw;
+  padding: 36px 36px 28px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.85);
+  animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+
+.lb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.lb-title {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 26px;
+  color: var(--gold2);
+}
+.lb-close {
+  background: none;
+  border: none;
+  color: rgba(212,168,83,0.4);
+  font-size: 22px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.lb-close:hover { color: var(--gold2); }
+
+.lb-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 200px;
+}
+
+.lb-row {
+  display: grid;
+  grid-template-columns: 28px 1fr auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 7px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  animation: fadeUp 0.3s ease forwards;
+  opacity: 0;
+}
+@keyframes fadeUp {
+  from { transform: translateY(8px); opacity: 0; }
+  to   { transform: translateY(0);   opacity: 1; }
+}
+.lb-row.me {
+  background: rgba(212,168,83,0.08);
+  border-color: rgba(212,168,83,0.2);
+}
+.lb-rank {
+  font-size: 11px;
+  color: rgba(212,168,83,0.4);
+  text-align: center;
+  font-weight: 400;
+}
+.lb-rank.top { color: var(--gold); font-size: 14px; }
+.lb-name {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lb-name.me-name { color: var(--gold2); }
+.lb-time {
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  font-weight: 400;
+}
+.lb-date {
+  font-size: 10px;
+  color: rgba(255,255,255,0.22);
+  white-space: nowrap;
+}
+.lb-empty {
+  text-align: center;
+  color: rgba(255,255,255,0.2);
+  font-size: 13px;
+  padding: 40px 0;
+  letter-spacing: 0.05em;
+}
+.lb-footer {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+}
+.lb-loading {
+  text-align: center;
+  color: rgba(212,168,83,0.3);
+  font-size: 12px;
+  padding: 40px 0;
+  letter-spacing: 0.1em;
+}
+
+/* ── NAME PROMPT ── */
+#name-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 7000;
+  background: rgba(0,0,0,0.75);
+  align-items: center;
+  justify-content: center;
+}
+#name-overlay.show { display: flex; }
+
+.name-panel {
+  background: linear-gradient(160deg, #111820, #0c1410);
+  border: 1px solid rgba(212,168,83,0.3);
+  border-radius: 14px;
+  padding: 42px 48px;
+  text-align: center;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.85);
+  animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+  width: 360px;
+  max-width: 90vw;
+}
+.name-title {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 28px;
+  color: var(--gold2);
+  margin-bottom: 8px;
+}
+.name-sub {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(212,168,83,0.35);
+  margin-bottom: 28px;
+}
+.name-input {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(212,168,83,0.25);
+  border-radius: 7px;
+  color: var(--gold2);
+  font-family: 'DM Mono', monospace;
+  font-size: 15px;
+  padding: 11px 14px;
+  outline: none;
+  text-align: center;
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+  transition: border-color 0.15s;
+}
+.name-input:focus { border-color: rgba(212,168,83,0.6); }
+.name-input::placeholder { color: rgba(212,168,83,0.2); }
+
 .btn {
   background: transparent;
   border: 1px solid rgba(212,168,83,0.3);
@@ -350,8 +539,13 @@ header {
 <body>
 
 <header>
-  <div class="logo">♠ Solitaire</div>
+  <div class="logo" style="display:flex;flex-direction:column;gap:2px;">
+    <span>♠ Solitaire</span>
+    <span style="font-family:'DM Serif Display',serif;font-style:italic;font-size:11px;opacity:0.45;letter-spacing:0.08em;">by Stas</span>
+  </div>
+  <div class="timer-display" id="timer-display">0:00</div>
   <div class="header-btns">
+    <button class="btn" onclick="showLeaderboard()">🏆 Leaderboard</button>
     <button class="btn" onclick="undo()">↩ Undo</button>
     <button class="btn" onclick="startGame()">New Game</button>
   </div>
@@ -374,12 +568,39 @@ header {
 
 <div id="drag-ghost"></div>
 
+<!-- Name prompt -->
+<div id="name-overlay">
+  <div class="name-panel">
+    <div class="name-title">Welcome</div>
+    <div class="name-sub">Enter your name for the leaderboard</div>
+    <input class="name-input" id="name-input" type="text" maxlength="20" placeholder="Your name" autocomplete="off" />
+    <button class="btn" style="width:100%;padding:11px;font-size:12px;" onclick="saveName()">Play</button>
+  </div>
+</div>
+
+<!-- Leaderboard -->
+<div id="lb-overlay" onclick="e => { if(e.target===this) hideLeaderboard(); }">
+  <div class="lb-panel">
+    <div class="lb-header">
+      <div class="lb-title">🏆 Leaderboard</div>
+      <button class="lb-close" onclick="hideLeaderboard()">✕</button>
+    </div>
+    <ul class="lb-list" id="lb-list"><div class="lb-loading">Loading…</div></ul>
+    <div class="lb-footer">
+      <button class="btn" onclick="hideLeaderboard()">Close</button>
+    </div>
+  </div>
+</div>
+
 <div id="win-overlay">
   <div class="win-card">
     <div class="win-emoji">🃏</div>
     <div class="win-title">You Won!</div>
-    <div class="win-sub">Well played</div>
-    <button class="btn" onclick="startGame()">Deal Again</button>
+    <div class="win-sub" id="win-time-display">—</div>
+    <div style="display:flex;gap:10px;justify-content:center;">
+      <button class="btn" onclick="showLeaderboard()">🏆 Leaderboard</button>
+      <button class="btn" onclick="startGame()">Deal Again</button>
+    </div>
   </div>
 </div>
 
@@ -451,6 +672,105 @@ function sndDeal(i)  {                                           // deal stagger
   setTimeout(() => playCardSound(170 + i*2, 0.32, 0.06, 0.10), i * 55);
 }
 function sndInvalid(){ playCardSound(110, 0.15, 0.05,  0.07); } // failed drop (subtle)
+
+// ─── TIMER ───────────────────────────────────
+let timerSecs = 0, timerInterval = null, timerStarted = false;
+
+function startTimer() {
+  if(timerStarted) return;
+  timerStarted = true;
+  document.getElementById('timer-display').classList.add('running');
+  timerInterval = setInterval(() => { timerSecs++; updateTimerDisplay(); }, 1000);
+}
+function stopTimer()  { clearInterval(timerInterval); timerInterval = null; }
+function resetTimer() {
+  stopTimer(); timerSecs = 0; timerStarted = false;
+  document.getElementById('timer-display').classList.remove('running');
+  updateTimerDisplay();
+}
+function updateTimerDisplay() {
+  let m = Math.floor(timerSecs/60), s = timerSecs%60;
+  document.getElementById('timer-display').textContent = m+':'+String(s).padStart(2,'0');
+}
+function fmtTime(secs) {
+  let m = Math.floor(secs/60), s = secs%60;
+  return m+':'+String(s).padStart(2,'0');
+}
+
+// ─── PLAYER NAME ─────────────────────────────
+let playerName = null;
+
+async function initPlayer() {
+  try {
+    let r = await window.storage.get('solitaire:name');
+    if(r && r.value) { playerName = r.value; return; }
+  } catch(e) {}
+  promptName();
+}
+function promptName() {
+  document.getElementById('name-overlay').classList.add('show');
+  setTimeout(() => document.getElementById('name-input').focus(), 120);
+}
+async function saveName() {
+  let val = document.getElementById('name-input').value.trim().slice(0,20);
+  if(!val) return;
+  playerName = val;
+  try { await window.storage.set('solitaire:name', val); } catch(e) {}
+  document.getElementById('name-overlay').classList.remove('show');
+}
+document.getElementById('name-input').addEventListener('keydown', e => {
+  if(e.key === 'Enter') saveName();
+});
+
+// ─── LEADERBOARD ─────────────────────────────
+const LB_KEY = 'solitaire:lb-v1';
+
+async function submitScore(secs) {
+  if(!playerName) return;
+  let board = [];
+  try {
+    let r = await window.storage.get(LB_KEY, true);
+    if(r && r.value) board = JSON.parse(r.value);
+  } catch(e) {}
+  board.push({ name: playerName, time: secs, date: new Date().toLocaleDateString() });
+  board.sort((a,b) => a.time - b.time);
+  board = board.slice(0,10);
+  try { await window.storage.set(LB_KEY, JSON.stringify(board), true); } catch(e) {}
+}
+
+async function showLeaderboard() {
+  document.getElementById('lb-overlay').classList.add('show');
+  let list = document.getElementById('lb-list');
+  list.innerHTML = '<div class="lb-loading">Loading…</div>';
+  let board = [];
+  try {
+    let r = await window.storage.get(LB_KEY, true);
+    if(r && r.value) board = JSON.parse(r.value);
+  } catch(e) {}
+  list.innerHTML = '';
+  if(!board.length) {
+    list.innerHTML = '<div class="lb-empty">No scores yet — win a game to be first!</div>';
+    return;
+  }
+  const medals = ['🥇','🥈','🥉'];
+  board.forEach((entry, i) => {
+    let isMe = entry.name === playerName;
+    let li = document.createElement('li');
+    li.className = 'lb-row' + (isMe ? ' me' : '');
+    li.style.animationDelay = (i*55)+'ms';
+    li.innerHTML = `
+      <span class="lb-rank ${i<3?'top':''}">${i<3?medals[i]:'#'+(i+1)}</span>
+      <span class="lb-name ${isMe?'me-name':''}">${esc(entry.name)}${isMe?' ✦':''}</span>
+      <span class="lb-time">${fmtTime(entry.time)}</span>
+      <span class="lb-date">${entry.date}</span>`;
+    list.appendChild(li);
+  });
+}
+function hideLeaderboard() { document.getElementById('lb-overlay').classList.remove('show'); }
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+document.getElementById('lb-overlay').addEventListener('click', function(e) {
+  if(e.target === this) hideLeaderboard();
+});
 const SUITS  = ['♠','♥','♦','♣'];
 const RANKS  = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
 const F_SUITS = ['♠','♥','♦','♣'];
@@ -508,6 +828,7 @@ function startGame() {
 
   // Mark every tableau card for deal animation + sound
   animDeal.clear(); animFlip.clear(); animWaste = false;
+  resetTimer();
   let dealIdx = 0;
   for(let ci = 0; ci < 7; ci++)
     for(let ri = 0; ri < tab[ci].length; ri++) {
@@ -541,6 +862,7 @@ function bestFoundation(card) {
 // ─── STOCK ───────────────────────────────────
 function clickStock() {
   pushHistory();
+  startTimer();
   animWaste = false;
   if(stock.length === 0) {
     stock = waste.slice().reverse().map(c => ({ ...c, up: false }));
@@ -563,6 +885,8 @@ function doMove(src, srcCi, srcRi, cards, dst, dstIdx) {
   // Remove cards from source
   if(src === 'waste') {
     waste.pop();
+  } else if(src === 'found') {
+    found[srcCi].pop(); // srcCi is used as foundation index
   } else {
     tab[srcCi].splice(srcRi);
   }
@@ -591,6 +915,7 @@ function doMove(src, srcCi, srcRi, cards, dst, dstIdx) {
 }
 
 function autoMove(src, ci, ri) {
+  startTimer();
   let pile;
   if(src === 'waste') pile = [waste[ri]];
   else pile = tab[ci].slice(ri);
@@ -614,7 +939,11 @@ function autoMove(src, ci, ri) {
 function checkWin() { return found.every(f => f.length === 13); }
 
 function showWin() {
+  stopTimer();
+  let finalTime = timerSecs;
+  document.getElementById('win-time-display').textContent = 'Finished in ' + fmtTime(finalTime);
   document.getElementById('win-overlay').classList.add('show');
+  submitScore(finalTime);
   let colors = ['#d4a853','#e8c27a','#ffffff','#c0392b','#1a3a7a','#2ecc71'];
   for(let i = 0; i < 100; i++) {
     setTimeout(() => {
@@ -713,9 +1042,12 @@ function renderFoundations() {
       let c = makeCard(top);
       c.style.position = 'relative';
       c.style.display = 'block';
+      c.classList.add('draggable');
+      // src='found', srcCi=i (foundation index), srcRi=pile.length-1
+      attachDrag(c, 'found', i, pile.length - 1);
       el.appendChild(c);
     } else {
-      el.textContent = F_SUITS[i];
+      el.innerHTML = '';
     }
   }
 }
@@ -836,6 +1168,7 @@ function attachDrag(el, src, ci, ri) {
     e.stopPropagation();
     let cards;
     if(src === 'waste') cards = [waste[ri]];
+    else if(src === 'found') cards = [found[ci][found[ci].length - 1]];
     else cards = tab[ci].slice(ri);
     beginDrag(e, src, ci, ri, cards, el);
   });
@@ -862,10 +1195,13 @@ function beginDrag(e, src, ci, ri, cards, origEl) {
   // Hide the dragged card elements in-place so the source looks empty
   // We collect all card elements from the drag start index onward
   if(src === 'waste') {
-    // Hide the top waste card (the one being dragged)
     let wasteEl = document.getElementById('waste');
     let cardEls = wasteEl.querySelectorAll('.card');
-    // The last one is the dragged card
+    if(cardEls.length > 0) cardEls[cardEls.length - 1].style.visibility = 'hidden';
+    drag.hiddenEls = [cardEls[cardEls.length - 1]];
+  } else if(src === 'found') {
+    let fEl = document.getElementById('f' + ci);
+    let cardEls = fEl.querySelectorAll('.card');
     if(cardEls.length > 0) cardEls[cardEls.length - 1].style.visibility = 'hidden';
     drag.hiddenEls = [cardEls[cardEls.length - 1]];
   } else {
@@ -915,6 +1251,7 @@ function onUp(e) {
     }
     if(ok) {
       pushHistory();
+      startTimer();
       // doMove calls render() which rebuilds DOM cleanly — no need to restore hidden els
       doMove(drag.src, drag.ci, drag.ri, drag.cards, t.type, t.idx);
       drag = null;
@@ -962,6 +1299,7 @@ function clearHilite() {
 }
 
 // ─── GO ──────────────────────────────────────
+initPlayer();
 startGame();
 </script>
 </body>
