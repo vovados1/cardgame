@@ -11,6 +11,7 @@
 const express = require('express');
 const { Pool } = require('pg');
 const cors    = require('cors');
+const path    = require('path');
 
 // ── App ───────────────────────────────────────
 const app  = express();
@@ -24,6 +25,11 @@ app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'DELETE'],
 }));
+
+// ── Serve solitaire.html at the homepage ──────
+app.get('/', (_, res) => {
+  res.sendFile(path.join(__dirname, 'solitaire.html'));
+});
 
 // ── Database ──────────────────────────────────
 // Render automatically sets the DATABASE_URL environment variable
