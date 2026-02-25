@@ -34,6 +34,45 @@ body {
   flex-direction: column;
 }
 
+/* Investment banner */
+.invest-banner {
+  flex-shrink: 0;
+  background: linear-gradient(90deg, rgba(212,168,83,0.15), rgba(212,168,83,0.08));
+  border-bottom: 1px solid rgba(212,168,83,0.25);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  position: relative;
+}
+.invest-banner.hidden { display: none; }
+.invest-banner-text {
+  font-size: 13px;
+  color: rgba(232,194,122,0.95);
+  letter-spacing: 0.03em;
+}
+.invest-banner-text a {
+  color: var(--gold2);
+  text-decoration: none;
+}
+.invest-banner-text a:hover { text-decoration: underline; }
+.invest-banner-close {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(212,168,83,0.5);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+}
+.invest-banner-close:hover { color: var(--gold2); }
+
 header {
   display: flex;
   align-items: center;
@@ -538,6 +577,11 @@ header {
 </head>
 <body>
 
+<div class="invest-banner" id="invest-banner">
+  <span class="invest-banner-text">To invest contact <a href="https://x.com/vovados1" target="_blank" rel="noopener">@vovados1</a> or send an E-Transfer to <a href="mailto:volodymyr.dosk@gmail.com">volodymyr.dosk@gmail.com</a></span>
+  <button class="invest-banner-close" id="invest-banner-close" type="button" aria-label="Close banner">&times;</button>
+</div>
+
 <header>
   <div class="logo" style="display:flex;flex-direction:column;gap:2px;">
     <span>♠ Solitaire</span>
@@ -605,6 +649,15 @@ header {
 </div>
 
 <script>
+// ─── INVEST BANNER ───────────────────────────
+(function(){
+  var banner = document.getElementById('invest-banner');
+  var closeBtn = document.getElementById('invest-banner-close');
+  if (banner && closeBtn) {
+    closeBtn.addEventListener('click', function() { banner.classList.add('hidden'); });
+  }
+})();
+
 // ─── SOUND ENGINE ────────────────────────────
 // All sounds synthesized via Web Audio API — no files needed.
 const AudioContext = window.AudioContext || window.webkitAudioContext;
