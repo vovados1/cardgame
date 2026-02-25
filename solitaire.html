@@ -731,7 +731,7 @@ async function submitScore(secs) {
   if(!playerName) return;
   try {
     await fetch(API + '/scores', {
-      method: 'POST',Replace it with your actual Render web service URL, e.g.:
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: playerName, time: secs })
     });
